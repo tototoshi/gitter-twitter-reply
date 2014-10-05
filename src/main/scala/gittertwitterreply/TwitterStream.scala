@@ -28,7 +28,7 @@ class TwitterStream (
         val isReplyToMe = text.contains("@" + screenName)
         val rt = Option(status.getRetweetedStatus).isDefined
         if (isReplyToMe && !rt) {
-          gitter.postMessage(screenName, status.getText)
+          gitter.postMessage(status.getUser.getScreenName, status.getText)
         }
       }
       override def onException(e: Exception): Unit = {
